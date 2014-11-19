@@ -7,7 +7,7 @@
   with_items:
     - mysql-server
     - libcrypto++-dev    
-    - libgmp
+    - libgmp-dev
 
 - name: Setup the database
   mysql_db: name=downstream

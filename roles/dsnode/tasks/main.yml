@@ -79,7 +79,7 @@
   file: path=/etc/nginx/sites-enabled/default.conf state=absent
   
 - name: Copy nginx downstream node site config
-  template: src=node_nginx.conf /etc/nginx/sites-available/node_nginx.conf
+  template: src=node_nginx.conf dest=/etc/nginx/sites-available/node_nginx.conf
   notify: Restart nginx
   
 - name: Link nginx downstream node site config

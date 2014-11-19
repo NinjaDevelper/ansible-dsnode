@@ -25,16 +25,19 @@
 
 - name: Create data directory
   file: path={{dsnodedataroot}} state=directory
-  
+
+- stat: path={{dsnodegeodbpath}} get_md5=no
+  register: st  
+
 - name: Pull in geolocation database and unzip
-  command: "if [ ! -f {{dsnodegeodbpath}} ] ; 
-              then 
-                curl -o {{dsnodegeodbpath}}.gz {{dsnodemaxminddburl}} ;
-                gunzip {{dsnodegeodbpath}}.gz ;
-            fi"
+  command: "{{item}}"
+  with_items:
+    - curl -o {{dsnodegeodbpath}}.gz {{dsnodemaxminddburl}}
+    - gunzip {{dsnodegeodbpath}}.gz
+  when: st.stat.isfile is not defined or not st.stat.isfile
   
 - name: Copy downstream-node config
-  copy: src=config.py dest={{dsnodelibroot}}/config.py
+  template: src=config.py dest={{dsnodelibroot}}/config.py
 
 - name: Install downstream-node
   pip: requirements={{dsnodeprojroot}}/requirements.txt virtualenv={{dsnodeuserroot}}/.env

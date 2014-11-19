@@ -1,8 +1,7 @@
 ---
 - name: Install downstream-node
   hosts: nodes
-  remote_user: root
-  sudo: yes
+  remote_user: root  
   
   roles:
     - nginx

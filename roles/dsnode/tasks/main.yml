@@ -20,7 +20,7 @@
   mysql_db: name=downstream
 
 - name: Setup the database user
-  mysql_user: name=downstream password="{{ lookup('password', 'credentials/mysqlpassword') }}" priv=downstream.*:ALL
+  mysql_user: name=downstream password={{ lookup('password', 'credentials/mysqlpassword') }} priv=downstream.*:ALL
   
 - name: Set up the downstream-node user
   user: name={{ dsnodeuser }}

@@ -1,0 +1,43 @@
+---
+- name: Install prerequisites
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - mysql-server
+    - libcrypto++-dev    
+    - libgmp
+
+- name: Setup the database
+  mysql_db: name=downstream
+
+- name: Setup the database user
+  mysql_user: name=downstream password="{{ lookup('password', 'credentials/mysqlpassword') }}" priv=downstream.*:ALL
+  
+- name: Set up the downstream-node user
+  user: name={{ dsnodeuser }}
+
+- name: Clone downstream-node repo
+  git: repo={{dsnoderepourl}} dest={{dsnodeprojroot}}
+
+- name: Pull in geolocation database
+  command: curl -o {{dsnodegeodbpath}} {{dsnodemaxminddburl}}
+
+- name: Unzip geolocation database
+  command: gunzip {{dsnodegeodbpath}}
+  
+- name: Copy downstream-node config
+  copy: src=config.py dest={{dsnodelibroot}}/config.py
+
+- name: Install downstream-node
+  pip: requirements={{dsnodeprojroot}}/requirements.txt virtualenv={{dsnodeuserroot}}/.env
+  
+- name: Initialize database
+  command: python {{dsnodeprojroot}}/runapp.py --initdb
+
+- name: Clone whitelist
+  git: repo={{dsnodewhitelistrepourl}} dest={{dsnodewhitelistroot}}
+  
+- name: Initialize whitelist
+  command: python {{dsnodeprojroot}}/runapp.py --whitelist {{dsnodewhitelistfile}}
+  
+- name: Start downstream-node
+  command: nohup python {{dsnodeprojroot}}/runapp.py &

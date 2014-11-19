@@ -30,14 +30,14 @@
   register: st  
 
 - debug: msg="{{dsnodegeodbpath}} exists"
-  when: st.stat.isfile is defined and st.stat.isfile
+  when: st.stat.isreg is defined and st.stat.isreg
   
 - name: Pull in geolocation database and unzip
   command: "{{item}}"
   with_items:
     - curl -o {{dsnodegeodbpath}}.gz {{dsnodemaxminddburl}}
     - gunzip {{dsnodegeodbpath}}.gz
-  when: st.stat.isfile is not defined or not st.stat.isfile
+  when: st.stat.isreg is not defined or not st.stat.isreg
   
 - name: Copy downstream-node config
   template: src=config.py dest={{dsnodelibroot}}/config.py

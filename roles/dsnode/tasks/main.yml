@@ -26,9 +26,12 @@
 - name: Create data directory
   file: path={{dsnodedataroot}} state=directory
 
-- stat: path={{dsnodegeodbpath}} get_md5=no
+- stat: path={{dsnodegeodbpath}}
   register: st  
 
+- debug: msg="{{dsnodegeodbpath}} exists"
+  when: st.stat.isfile is defined and st.stat.isfile
+  
 - name: Pull in geolocation database and unzip
   command: "{{item}}"
   with_items:

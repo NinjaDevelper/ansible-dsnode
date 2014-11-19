@@ -12,3 +12,4 @@ dsnodewhitelistrepourl: https://github.com/storj/whitelist.git
 dsnodewhitelistroot: "{{dsnodedataroot}}/whitelist"
 dsnodewhitelistfile: "{{dsnodewhitelistroot}}/storj_crowdfunding_by_amount.txt"
 dsnodeenv: "{{dsnodeuserroot}}/.env"
+dsnodemysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"

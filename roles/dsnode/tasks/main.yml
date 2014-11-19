@@ -20,10 +20,10 @@
   mysql_db: name=downstream
 
 - name: Print password for debugging
-  debug: msg="Password is {{lookup('password','credentials/mysqlpassword')}}"
+  debug: msg="Password is {{ dsnodemysqlpassword }}"
 
 - name: Setup the database user
-  mysql_user: name=downstream password={{ lookup('password', 'credentials/mysqlpassword') }} priv=downstream.*:ALL
+  mysql_user: name=downstream password="{{ dsnodemysqlpassword }}" priv=downstream.*:ALL
   
 - name: Set up the downstream-node user
   user: name={{ dsnodeuser }}

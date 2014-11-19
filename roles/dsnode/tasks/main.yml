@@ -48,13 +48,13 @@
   pip: requirements={{dsnodeprojroot}}/requirements.txt virtualenv={{dsnodeenv}}
   
 - name: Initialize database
-  command: {{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --initdb
+  command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --initdb"
 
 - name: Clone whitelist
   git: repo={{dsnodewhitelistrepourl}} dest={{dsnodewhitelistroot}}
   
 - name: Initialize whitelist
-  command: {{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --whitelist {{dsnodewhitelistfile}}
+  command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --whitelist {{dsnodewhitelistfile}}"
   
 - name: Start downstream-node
   command: nohup {{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py &

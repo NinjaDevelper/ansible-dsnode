@@ -60,4 +60,6 @@
   command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --whitelist {{dsnodewhitelistfile}}"
   
 - name: Start downstream-node
-  command: nohup {{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py &
+  command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py"
+  async: 45
+  poll: 0

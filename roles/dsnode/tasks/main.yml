@@ -76,7 +76,7 @@
   file: path=/var/log/uwsgi recurse=yes owner={{dsnodeuser}} group={{dsnodeuser}} state=directory
   
 - name: Remove default nginx config
-  file: path=/etc/nginx/sites-enabled/default.conf state=absent
+  file: path=/etc/nginx/sites-enabled/default state=absent
   
 - name: Copy nginx downstream node site config
   template: src=node_nginx.conf dest=/etc/nginx/sites-available/node_nginx.conf

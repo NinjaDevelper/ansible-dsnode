@@ -1,5 +1,4 @@
 ---
-# downstream node directory: the installation directory
 dsnodeuser: dsnode
 dsnodeuserroot: /home/{{dsnodeuser}}
 dsnodeprojroot: "{{dsnodeuserroot}}/downstream-node"
@@ -12,7 +11,7 @@ dsnodewhitelistrepourl: https://github.com/storj/whitelist.git
 dsnodewhitelistroot: "{{dsnodedataroot}}/whitelist"
 dsnodewhitelistfile: "{{dsnodewhitelistroot}}/storj_crowdfunding_by_amount.txt"
 dsnodeenv: "{{dsnodeuserroot}}/.env"
-dsnodemysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
 dsnodeuwsgiini: "{{dsnodeuserroot}}/node_uwsgi.ini"
 dsnodeuwsgisock: "{{dsnodeuserroot}}/node_uwsgi.sock"
-dsnodeservername: live.driveshare.org
+# we will just use the first dbserver as the db server (since for now we'll only have one anyway)
+dsnodedbserver: "{{groups['dbservers'][0]}}"

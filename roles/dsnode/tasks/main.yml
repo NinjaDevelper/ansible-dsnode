@@ -16,15 +16,6 @@
 
 - name: Install virtualenv
   pip: name=virtualenv
-    
-- name: Setup the database
-  mysql_db: name=downstream
-
-- name: Print password for debugging
-  debug: msg="Password is {{ dsnodemysqlpassword }}"
-
-- name: Setup the database user
-  mysql_user: name=downstream password="{{ dsnodemysqlpassword }}" priv=downstream.*:ALL
   
 - name: Set up the downstream-node user
   user: name={{ dsnodeuser }}
@@ -56,12 +47,15 @@
   
 - name: Initialize database
   command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --initdb"
+  when: inventory_hostname in groups['dbservers']
 
 - name: Clone whitelist
   git: repo={{dsnodewhitelistrepourl}} dest={{dsnodewhitelistroot}}
+  when: inventory_hostname in groups['dbservers']
   
 - name: Initialize whitelist
   command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --whitelist {{dsnodewhitelistfile}}"
+  when: inventory_hostname in groups['dbservers']
   
 - name: Install uwsgi
   pip: name=uwsgi virtualenv={{dsnodeenv}}
@@ -77,6 +71,7 @@
   
 - name: Remove default nginx config
   file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: Restart nginx
   
 - name: Copy nginx downstream node site config
   template: src=node_nginx.conf dest=/etc/nginx/sites-available/node_nginx.conf

@@ -11,6 +11,9 @@
     - python-mysqldb
     - git
 
+- name: Install virtualenv
+  pip: name=virtualenv
+    
 - name: Setup the database
   mysql_db: name=downstream
 
@@ -27,10 +30,7 @@
   file: path={{dsnodedataroot}} state=directory
 
 - stat: path={{dsnodegeodbpath}}
-  register: st  
-
-- debug: msg="{{dsnodegeodbpath}} exists"
-  when: st.stat.isreg is defined and st.stat.isreg
+  register: st
   
 - name: Pull in geolocation database and unzip
   command: "{{item}}"

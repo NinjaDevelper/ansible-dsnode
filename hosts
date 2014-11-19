@@ -1,4 +1,4 @@
 [nodes]
-localhost:49223
+10.0.0.7:49223
 
 [loadbalancer]

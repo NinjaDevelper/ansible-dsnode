@@ -13,3 +13,6 @@ dsnodewhitelistroot: "{{dsnodedataroot}}/whitelist"
 dsnodewhitelistfile: "{{dsnodewhitelistroot}}/storj_crowdfunding_by_amount.txt"
 dsnodeenv: "{{dsnodeuserroot}}/.env"
 dsnodemysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
+dsnodeuwsgiini: "{{dsnodeuserroot}}/node_uwsgi.ini"
+dsnodeuwsgisock: "{{dsnodeuserroot}}/node_uwsgi.sock"
+dsnodeservername: live.driveshare.org

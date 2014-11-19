@@ -12,6 +12,7 @@
     - git
     - python-pip
     - python-dev
+    - nginx
 
 - name: Install virtualenv
   pip: name=virtualenv
@@ -30,6 +31,9 @@
 
 - name: Clone downstream-node repo
   git: repo={{dsnoderepourl}} dest={{dsnodeprojroot}}
+  
+- name: Chown downstream-node repo
+  file: path={{dsnodeprojroot}} recurse=true owner={{dsnodeuser}} group={{dsnodeuser}}
 
 - name: Create data directory
   file: path={{dsnodedataroot}} state=directory
@@ -59,7 +63,25 @@
 - name: Initialize whitelist
   command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --whitelist {{dsnodewhitelistfile}}"
   
-- name: Start downstream-node
-  command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py"
-  async: 45
-  poll: 0
+- name: Install uwsgi
+  pip: name=uwsgi virtualenv={{dsnodeenv}}
+
+- name: Copy uwsgi config
+  template: src=node_uwsgi.ini dest={{dsnodeuwsgiini}}
+  
+- name: Copy uwsgi startup
+  template: src=uwsgi.conf dest=/etc/init/uwsgi.conf
+  
+- name: Ensure uwsgi log directory exists
+  file: path=/var/log/uwsgi recurse=yes owner={{dsnodeuser}} group={{dsnodeuser}} state=directory
+  
+- name: Remove default nginx config
+  file: path=/etc/nginx/sites-enabled/default.conf state=absent
+  
+- name: Copy nginx downstream node site config
+  template: src=node_nginx.conf /etc/nginx/sites-available/node_nginx.conf
+  notify: Restart nginx
+  
+- name: Link nginx downstream node site config
+  file: path=/etc/nginx/sites-enabled/node_nginx.conf src=/etc/nginx/sites-available/node_nginx.conf state=link
+  notify: Restart uwsgi

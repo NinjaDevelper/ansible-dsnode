@@ -19,6 +19,9 @@
 - name: Setup the database
   mysql_db: name=downstream
 
+- name: Print password for debugging
+  debug: msg="Password is {{lookup('password','credentials/mysqlpassword')}}"
+
 - name: Setup the database user
   mysql_user: name=downstream password={{ lookup('password', 'credentials/mysqlpassword') }} priv=downstream.*:ALL
   

@@ -27,10 +27,10 @@
   file: path={{dsnodedataroot}} state=directory
   
 - name: Pull in geolocation database
-  command: curl -o {{dsnodegeodbpath}} {{dsnodemaxminddburl}}
+  command: curl -o {{dsnodegeodbpath}}.gz {{dsnodemaxminddburl}}
 
 - name: Unzip geolocation database
-  command: gunzip {{dsnodegeodbpath}}
+  command: gunzip {{dsnodegeodbpath}}.gz
   
 - name: Copy downstream-node config
   copy: src=config.py dest={{dsnodelibroot}}/config.py

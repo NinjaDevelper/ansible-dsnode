@@ -9,6 +9,7 @@
     - libcrypto++-dev    
     - libgmp-dev
     - python-mysqldb
+    - git
 
 - name: Setup the database
   mysql_db: name=downstream

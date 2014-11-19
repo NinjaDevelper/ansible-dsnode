@@ -27,7 +27,7 @@
   file: path={{dsnodedataroot}} state=directory
   
 - name: Pull in geolocation database and unzip
-  command: if [! -f {{dsnodegeodbpath}} ] ;
+  command: if [ ! -f {{dsnodegeodbpath}} ] ; 
              then 
                curl -o {{dsnodegeodbpath}}.gz {{dsnodemaxminddburl}} ;
                gunzip {{dsnodegeodbpath}}.gz ;

@@ -8,6 +8,7 @@
     - mysql-server
     - libcrypto++-dev    
     - libgmp-dev
+    - python-mysqldb
 
 - name: Setup the database
   mysql_db: name=downstream

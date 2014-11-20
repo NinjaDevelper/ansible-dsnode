@@ -1,3 +1,11 @@
 ---
 - name: Clone downstream-dash repo
   git: repo={{dashrepourl}} dest={{dashroot}}
+
+- name: Copy nginx downstream dash site config
+  template: src=dash_nginx.conf dest=/etc/nginx/sites-available/dash_nginx.conf
+  notify: Restart nginx
+  
+- name: Link nginx downstream dash site config
+  file: path=/etc/nginx/sites-enabled/dash_nginx.conf src=/etc/nginx/sites-available/dash_nginx.conf state=link
+  notify: Restart nginx

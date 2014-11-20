@@ -1,0 +1,9 @@
+---  
+- name: Install mysql-server and python-mysqldb
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - python-mysqldb
+    - mysql-server
+
+- name: Ensure mysql is running
+  service: name=mysql state=running

@@ -7,7 +7,7 @@
     - git
     - python-pip
     - python-dev
-    - nginx
+    - python-mysqldb
 
 - name: Install virtualenv
   pip: name=virtualenv
@@ -57,19 +57,19 @@
   
 - name: Install uwsgi
   pip: name=uwsgi virtualenv={{dsnodeenv}}
+  notify: Restart uwsgi
 
 - name: Copy uwsgi config
   template: src=node_uwsgi.ini dest={{dsnodeuwsgiini}}
+  notify: Restart uwsgi
   
 - name: Copy uwsgi startup
   template: src=uwsgi.conf dest=/etc/init/uwsgi.conf
+  notify: Restart uwsgi
   
 - name: Ensure uwsgi log directory exists
   file: path=/var/log/uwsgi recurse=yes owner={{dsnodeuser}} group={{dsnodeuser}} state=directory
-  
-- name: Remove default nginx config
-  file: path=/etc/nginx/sites-enabled/default state=absent
-  notify: Restart nginx
+  notify: Restart uwsgi
   
 - name: Copy nginx downstream node site config
   template: src=node_nginx.conf dest=/etc/nginx/sites-available/node_nginx.conf
@@ -77,4 +77,7 @@
   
 - name: Link nginx downstream node site config
   file: path=/etc/nginx/sites-enabled/node_nginx.conf src=/etc/nginx/sites-available/node_nginx.conf state=link
-  notify: Restart uwsgi
+  notify: Restart nginx
+  
+- name: Ensure uwsgi is running
+  service: name=uwsgi state=running

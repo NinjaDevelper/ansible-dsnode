@@ -1,0 +1,5 @@
+---
+nodeport: 80
+nodeproxyport: 8000
+nodescheme: http
+servername: live.driveshare.org

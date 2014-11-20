@@ -1,4 +1,5 @@
 ---
+# select the first dbserver as our server.  we'll only have one for now anyway
 mysqldbserver: "{{ groups['dbservers'][0] }}"
 mysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
 servername: live.driveshare.org

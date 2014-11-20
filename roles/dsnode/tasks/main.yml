@@ -2,10 +2,8 @@
 - name: Install prerequisites
   apt: pkg={{ item }} state=latest
   with_items:
-    - mysql-server
     - libcrypto++-dev    
     - libgmp-dev
-    - python-mysqldb
     - git
     - python-pip
     - python-dev

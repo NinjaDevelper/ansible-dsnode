@@ -1,3 +1,8 @@
 ---
 - name: Update apt
   apt: update_cache=yes
+  
+- name: Install python-mysqldb
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - python-mysqldb

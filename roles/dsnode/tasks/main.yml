@@ -16,7 +16,9 @@
   user: name={{ dsnodeuser }}
 
 - name: Create downstream-node mysql user
-  mysql_user: name={{ dsnodemysqluser }} host={{ dsnodehostname }} password={{ mysqlpassword }} priv=downstream.*:ALL
+  mysql_user: name={{ dsnodemysqluser }} host={{ item }} password={{ mysqlpassword }} priv=downstream.*:ALL
+  with_items: groups['nodes']
+  when: inventory_hostname in groups['dbservers']
 
 - name: Clone downstream-node repo
   git: repo={{dsnoderepourl}} dest={{dsnodeprojroot}}

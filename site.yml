@@ -2,6 +2,7 @@
 - name: Install mysql
   hosts: dbservers
   remote_user: root
+  sudo: true
   
   roles:
     - common
@@ -11,6 +12,7 @@
 - name: Install downstream-node
   hosts: nodes
   remote_user: root
+  sudo: true
   
   roles:
     - common

@@ -15,5 +15,5 @@ certificate_src: files/example.crt
 certificate_dest: /etc/ssl/certs/example.crt
 certificate_key_src: files/example.key
 certificate_key_dest: /etc/ssl/private/example.key
-dhparam_src: dh4096.pem
+dhparam_src: files/dh4096.pem
 dhparam_dest: /etc/ssl/certs/dh4096.pem

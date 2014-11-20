@@ -7,7 +7,7 @@
     - common
     - dsnodedb
 
----
+
 - name: Install downstream-node
   hosts: nodes
   remote_user: root

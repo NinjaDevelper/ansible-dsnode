@@ -8,4 +8,5 @@ node1
 lb1
 
 [all:vars]
+hostname=10.0.0.27
 mysqldbserver=10.0.0.27

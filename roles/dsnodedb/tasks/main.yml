@@ -9,6 +9,6 @@
     
 - name: Setup the database
   mysql_db: name=downstream
-
-- name: Setup the database user
-  mysql_user: name=downstream password="{{ mysqlpassword }}" priv=downstream.*:ALL
+  
+- name: Configure mysql to listen to outside servers
+  lineinfile: dest=/etc/mysql/my.cnf regexp="bind-address" line="bind-address = 0.0.0.0"

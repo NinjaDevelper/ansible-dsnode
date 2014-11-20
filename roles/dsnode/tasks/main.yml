@@ -15,6 +15,9 @@
 - name: Set up the downstream-node user
   user: name={{ dsnodeuser }}
 
+- name: Create downstream-node mysql user
+  mysql_user: name={{ dsnodemysqluser }} host={{ ansible_hostname }} password={{ mysqlpassword }} priv=downstream.*:ALL
+
 - name: Clone downstream-node repo
   git: repo={{dsnoderepourl}} dest={{dsnodeprojroot}}
   

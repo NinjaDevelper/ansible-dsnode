@@ -13,5 +13,4 @@ dsnodewhitelistfile: "{{dsnodewhitelistroot}}/storj_crowdfunding_by_amount.txt"
 dsnodeenv: "{{dsnodeuserroot}}/.env"
 dsnodeuwsgiini: "{{dsnodeuserroot}}/node_uwsgi.ini"
 dsnodeuwsgisock: "{{dsnodeuserroot}}/node_uwsgi.sock"
-# we will just use the first dbserver as the db server (since for now we'll only have one anyway)
-dsnodedbserver: "{{mysqldbserver}}"
+dsnodemysqluser: downstream

@@ -6,3 +6,6 @@ node1
 
 [loadbalancer]
 lb1
+
+[all:vars]
+mysqldbserver=10.0.0.27

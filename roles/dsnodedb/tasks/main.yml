@@ -1,7 +1,4 @@
----
-- name: Install virtualenv
-  pip: name=virtualenv
-    
+--- 
 - name: Setup the database
   mysql_db: name=downstream
   

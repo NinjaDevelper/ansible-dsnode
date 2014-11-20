@@ -2,3 +2,7 @@
 - name: Copy nginx load balancer config
   template: src=lb_nginx.conf dest=/etc/nginx/sites-available/lb_nginx.conf
   notify: Restart nginx
+
+- name: Link nginx load balancer config
+  file: path=/etc/nginx/sites-enabled/lb_nginx.conf src=/etc/nginx/sites-available/lb_nginx.conf state=link
+  notify: Restart nginx

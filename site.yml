@@ -17,7 +17,7 @@
     - dsnode
 
 - name: Install load balancer
-  hosts: load balancer
+  hosts: loadbalancer
   remote_user: root
   sudo: true
   

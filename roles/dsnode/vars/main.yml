@@ -14,3 +14,4 @@ dsnodeenv: "{{dsnodeuserroot}}/.env"
 dsnodeuwsgiini: "{{dsnodeuserroot}}/node_uwsgi.ini"
 dsnodeuwsgisock: "{{dsnodeuserroot}}/node_uwsgi.sock"
 dsnodemysqluser: downstream
+dsnodehostname: "{{inventory_hostname}}"

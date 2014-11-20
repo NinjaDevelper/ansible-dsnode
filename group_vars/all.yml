@@ -1,4 +1,3 @@
 ---
-mysqldbserver: 10.0.0.27
 mysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
 servername: live.driveshare.org

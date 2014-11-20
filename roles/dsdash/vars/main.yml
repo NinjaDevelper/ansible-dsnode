@@ -1,0 +1,14 @@
+---
+dashport: 443
+dashroot: /var/www/dsdash
+dashrepourl: https://github.com/storj/downstream-dash.git
+dashssl_enabled: True
+dashaccesslog_path: /var/log/nginx/downtream_dash_access.log
+dasherrorlog_path: /var/log/nginx/downstream_dash_error.log
+# whether to encrypt traffic to the downstream status page
+statusssl_enabled: True
+# the default status url
+statusurl: groups['loadbalancer'][0]
+# the default status port
+statusport: 8443
+statusrequest_uri: /api/downstream/v1/status/list/by/d/uptime

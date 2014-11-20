@@ -1,5 +1,9 @@
 ---
-nodeport: 80
-nodeproxyport: 8000
-nodescheme: http
-servername: live.driveshare.org
+# this is the port exposed on the public side of the load balancer
+lbport: 80
+# this is the port the nodes have exposed that the load balancer is directing requests to
+proxyport: 8000
+# this is whether the load balancer should decrypt ssl traffic before passing it on
+lbssl_enabled: {{ ssl_enabled }}
+# this is whether the nodes have ssl enabled and should be connected to with https
+proxyssl_enabled: {{ ssl_enabled }}

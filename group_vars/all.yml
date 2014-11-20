@@ -1,5 +1,19 @@
 ---
 # select the first dbserver as our server.  we'll only have one for now anyway
 mysqldbserver: "{{ groups['dbservers'][0] }}"
+# password for the mysql server
 mysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
+# root server name
 servername: live.driveshare.org
+# pull the ip address for the loadbalancer
+lbaddr: hostvars[groups['loadbalancer'][0]]['ansible_default_ipv4']['address']
+# whether to globally enable ssl (this will enable ssl on the dashboard and the nodes.)
+# the load balancer by default is configured to passthrough https requests
+ssl_enabled: True
+# will need these if ssl is enabled
+certificate_src: example.crt
+certificate_dest: /etc/ssl/certs/example.crt
+certificate_key_src: example.key
+certificate_key_dest: /etc/ssl/private/example.key
+dhparam_src: dh4096.pem
+dhparam_dest: /etc/ssl/certs/dh4096.pem

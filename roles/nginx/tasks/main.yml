@@ -7,6 +7,31 @@
 - name: Remove default nginx config
   file: path=/etc/nginx/sites-enabled/default state=absent
   notify: Restart nginx
+
+- name: Copy ssl certificates
+  copy: src={{certificate_src}} dest={{certificate_dest}}
+  when: ssl_enabled
+  notify: Restart nginx
+  
+- name: Copy ssl certificate key
+  copy: src={{{certificate_key_src}} dest={{certificate_key_dest}}
+  when: ssl_enabled
+  notify: Restart nginx
+
+- name: Copy ssl dhparam
+  copy: src={{dhparam_src}} dest={{dhparam_dest}}
+  when: ssl_enabled
+  notify: Restart nginx
+
+- name: Copy ssl configuration
+  template: src=ssl.conf dest=/etc/nginx/sites-available/ssl.conf
+  when: ssl_enabled
+  notify: Restart nginx
+
+- name: Link ssl configuration
+  file: path=/etc/nginx/sites-enabled/ssl.conf src=/etc/nginx/sites-available/ssl.conf state=link
+  when: ssl_enabled
+  notify: Restart nginx
   
 - name: Ensure nginx is running
   service: name=nginx state=running

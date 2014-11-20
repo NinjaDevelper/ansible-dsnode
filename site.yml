@@ -1,4 +1,12 @@
 ---
+- name: Install load balancer
+  hosts: loadbalancer
+  remote_user: root
+  sudo: true
+  
+  roles:
+    - nginxlb
+
 - name: Install mysql
   hosts: dbservers
   remote_user: root
@@ -15,11 +23,11 @@
   
   roles:
     - dsnode
-
-- name: Install load balancer
-  hosts: loadbalancer
+    
+- name: Install downstream-dash
+  hosts: dashboards
   remote_user: root
   sudo: true
   
   roles:
-    - nginxlb
+    - dsdash

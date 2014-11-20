@@ -14,7 +14,7 @@
   notify: Restart nginx
   
 - name: Copy ssl certificate key
-  copy: src={{{certificate_key_src}} dest={{certificate_key_dest}}
+  copy: src={{certificate_key_src}} dest={{certificate_key_dest}}
   when: ssl_enabled
   notify: Restart nginx
 

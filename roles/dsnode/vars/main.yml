@@ -16,6 +16,6 @@ dsnodeuwsgisock: "{{dsnodeuserroot}}/node_uwsgi.sock"
 dsnodemysqluser: downstream
 dsnodehostname: "{{inventory_hostname}}"
 dsnodeport: 8443
-dsnodessl_enabled: {{ ssl_enabled }}
+dsnodessl_enabled: "{{ ssl_enabled }}"
 dsnodeaccesslog_path: /var/log/nginx/downtream_node_access.log
 dsnodeerrorlog_path: /var/log/nginx/downstream_node_error.log

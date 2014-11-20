@@ -1,3 +1,4 @@
 ---
+mysqldbserver: {{ groups['dbserver'][0] }}
 mysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
 servername: live.driveshare.org

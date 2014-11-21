@@ -4,6 +4,9 @@ node2
 node3
 
 [dbserver]
+; it is assumed that the db server will be running as one
+; of the nodes as well.  if this is not the case, the 
+; database will not be configured correctly
 node1
 
 [loadbalancer]

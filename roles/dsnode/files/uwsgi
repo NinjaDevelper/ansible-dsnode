@@ -1,0 +1,12 @@
+/var/log/uwsgi/*.log {
+	weekly
+	missingok
+	rotate 52
+	compress
+	delaycompress
+	notifempty
+	create 0640 www-data adm
+	postrotate
+		service uwsgi restart >/dev/null 2>&1
+	endscript
+}

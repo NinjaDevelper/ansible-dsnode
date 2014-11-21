@@ -73,6 +73,9 @@
   file: path=/var/log/uwsgi recurse=yes owner={{dsnodeuser}} group={{dsnodeuser}} state=directory
   notify: Restart uwsgi
   
+- name: Set up logrotate for uwsgi logs
+  copy: src=uwsgi dest=/etc/logrotate.d/uwsgi
+  
 - name: Copy nginx downstream node site config
   template: src=node_nginx.conf dest=/etc/nginx/sites-available/node_nginx.conf
   notify:

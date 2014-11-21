@@ -75,15 +75,13 @@
   
 - name: Copy nginx downstream node site config
   template: src=node_nginx.conf dest=/etc/nginx/sites-available/node_nginx.conf
-  notify: "{{ item }}"
-  with_items:
+  notify:
    - Restart nginx
    - Restart uwsgi
   
 - name: Link nginx downstream node site config
   file: path=/etc/nginx/sites-enabled/node_nginx.conf src=/etc/nginx/sites-available/node_nginx.conf state=link
-  notify: "{{ item }}"
-  with_items:
+  notify:
     - Restart nginx
     - Restart uwsgi
   

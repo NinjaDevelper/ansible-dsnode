@@ -1,5 +1,5 @@
 ---
-dashport: {{ 443 if ssl_enabled else 80 }}
+dashport: "{{ 443 if ssl_enabled else 80 }}"
 dashroot: /var/www/dsdash
 dashrepourl: https://github.com/storj/downstream-dash.git
 dashssl_enabled: "{{ ssl_enabled }}"
@@ -10,5 +10,5 @@ statusssl_enabled: "{{ ssl_enabled }}"
 # the default status url
 statusurl: "{{groups['loadbalancer'][0]}}"
 # the default status port
-statusport: {{ 8443 if ssl_enabled else 800 }}
+statusport: "{{ 8443 if ssl_enabled else 800 }}"
 statusrequest_uri: /api/downstream/v1/status/list/by/d/uptime

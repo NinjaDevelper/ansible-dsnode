@@ -4,11 +4,11 @@
   
 - name: Replace live.driveshare.org with servername
   replace: dest={{dashroot}}/js/frontend.js regexp='live\.driveshare\.org' replace='{{statusurl}}'
-  when: statusssl_enabled 
+  when: statusssl_enabled|bool
 
 - name: Replace live.driveshare.org with servername removing https
   replace: dest={{dashroot}}/js/frontend.js regexp='https\:\/\/live\.driveshare\.org' replace='http\:\/\/{{statusurl}}'
-  when: not statusssl_enabled
+  when: not statusssl_enabled|bool
 
 - name: Copy nginx downstream dash site config
   template: src=dash_nginx.conf dest=/etc/nginx/sites-available/dash_nginx.conf

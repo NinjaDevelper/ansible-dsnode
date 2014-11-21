@@ -17,7 +17,3 @@ certificate_key_src: files/example.key
 certificate_key_dest: /etc/ssl/private/example.key
 dhparam_src: files/dh4096.pem
 dhparam_dest: /etc/ssl/certs/dh4096.pem
-lbport: 800
-proxyport: 8000
-dashport: 80
-statusport: "{{ lbport }}"

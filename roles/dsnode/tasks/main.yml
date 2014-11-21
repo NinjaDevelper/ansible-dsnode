@@ -16,7 +16,7 @@
   user: name={{ dsnodeuser }}
 
 - name: Debug print mysqlpassword
-  debug: msg=Mysql password is {{ mysqlpassword }}
+  debug: msg="Mysql password is {{ mysqlpassword }}"
   
 - name: Create downstream-node mysql user
   mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv=downstream.*:ALL

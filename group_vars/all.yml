@@ -9,7 +9,7 @@ servername: live.driveshare.org
 lbaddr: "{{ hostvars[groups['loadbalancer'][0]]['ansible_default_ipv4']['address'] }}"
 # whether to globally enable ssl (this will enable ssl on the dashboard and the nodes.)
 # the load balancer by default is configured to passthrough https requests
-ssl_enabled: True
+ssl_enabled: False
 # will need these if ssl is enabled
 certificate_src: files/example.crt
 certificate_dest: /etc/ssl/certs/example.crt
@@ -17,3 +17,7 @@ certificate_key_src: files/example.key
 certificate_key_dest: /etc/ssl/private/example.key
 dhparam_src: files/dh4096.pem
 dhparam_dest: /etc/ssl/certs/dh4096.pem
+lbport: 800
+proxyport: 8000
+dashport: 80
+statusport: {{ lbport }}

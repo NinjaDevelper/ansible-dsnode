@@ -21,7 +21,7 @@
 - name: Create downstream-node mysql user
   mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv=downstream.*:ALL
   with_items: groups['nodes']
-  when: inventory_hostname in groups['dbservers']
+  when: inventory_hostname in groups['dbserver']
 
 - name: Clone downstream-node repo
   git: repo={{dsnoderepourl}} dest={{dsnodeprojroot}}
@@ -44,21 +44,22 @@
   
 - name: Copy downstream-node config
   template: src=config.py dest={{dsnodelibroot}}/config.py
+  notify: Restart uwsgi
 
 - name: Install downstream-node
   pip: requirements={{dsnodeprojroot}}/requirements.txt virtualenv={{dsnodeenv}}
   
 - name: Initialize database
   command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --initdb"
-  when: inventory_hostname in groups['dbservers']
+  when: inventory_hostname in groups['dbserver']
 
 - name: Clone whitelist
   git: repo={{dsnodewhitelistrepourl}} dest={{dsnodewhitelistroot}}
-  when: inventory_hostname in groups['dbservers']
+  when: inventory_hostname in groups['dbserver']
   
 - name: Initialize whitelist
   command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --whitelist {{dsnodewhitelistfile}}"
-  when: inventory_hostname in groups['dbservers']
+  when: inventory_hostname in groups['dbserver']
   
 - name: Install uwsgi
   pip: name=uwsgi virtualenv={{dsnodeenv}}

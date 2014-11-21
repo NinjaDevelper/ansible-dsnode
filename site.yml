@@ -8,7 +8,7 @@
     - nginxlb
 
 - name: Install mysql
-  hosts: dbservers
+  hosts: dbserver
   remote_user: root
   sudo: true
   

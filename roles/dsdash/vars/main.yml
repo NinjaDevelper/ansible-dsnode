@@ -3,7 +3,7 @@ dashport: "{{ 443 if ssl_enabled else 80 }}"
 dashroot: /var/www/dsdash
 dashrepourl: https://github.com/storj/downstream-dash.git
 dashssl_enabled: "{{ ssl_enabled }}"
-dashaccesslog_path: /var/log/nginx/downtream_dash_access.log
+dashaccesslog_path: /var/log/nginx/downstream_dash_access.log
 dasherrorlog_path: /var/log/nginx/downstream_dash_error.log
 # whether to encrypt traffic to the downstream status page
 statusssl_enabled: "{{ ssl_enabled }}"

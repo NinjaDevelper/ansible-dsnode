@@ -20,4 +20,4 @@ dhparam_dest: /etc/ssl/certs/dh4096.pem
 lbport: 800
 proxyport: 8000
 dashport: 80
-statusport: {{ lbport }}
+statusport: "{{ lbport }}"

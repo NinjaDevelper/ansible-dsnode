@@ -8,7 +8,8 @@ To deploy a downstream-node cluster, you can use this ansible playbook.  It will
 First, install git and ansible, and clone the repository
 
 ```
-$ sudo apt-get install git ansible
+$ sudo apt-get install git python-dev python-pip
+$ pip install ansible
 $ git clone https://github.com/wiggzz/ansible-dsnode
 ```
 
@@ -48,5 +49,5 @@ Then, run the playbook by issuing
 $ ansible-playbook -i hosts site.yml
 ```
 
-If your ssh host name needs sudo for configuration, add the `--ask-sudo-pass` option, or specify it in the hosts template.  Please see the ansible documentation for further details.
+If your ssh host name is different from your current host name, or it needs sudo for configuration, add the `-u USER` option and/or the `--ask-sudo-pass` option, or specify it in the hosts template.  Please see the ansible documentation for further details.
 

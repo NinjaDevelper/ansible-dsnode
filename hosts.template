@@ -15,6 +15,3 @@ node2
 [dashboards]
 node2
 
-[vars:all]
-servername=node2
-

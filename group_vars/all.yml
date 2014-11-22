@@ -5,6 +5,8 @@ mysqldbserver: "{{ groups['dbserver'][0] }}"
 mysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
 # root server name
 servername: live.driveshare.org
+# private nodes
+privatenodes: "{{ groups['nodes'] }}"
 # pull the ip address for the loadbalancer
 lbaddr: "{{ hostvars[groups['loadbalancer'][0]]['ansible_default_ipv4']['address'] }}"
 # whether to globally enable ssl (this will enable ssl on the dashboard and the nodes.)

@@ -1,5 +1,5 @@
 ---
-lbproxies: "{{ groups['nodes'] }}"
+lbproxies: "{{ privatenodes }}"
 # this is the port exposed on the public side of the load balancer
 lbport: "{{ 8443 if ssl_enabled else 800 }}"
 # this is the port the nodes have exposed that the load balancer is directing requests to

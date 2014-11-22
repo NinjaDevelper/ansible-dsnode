@@ -20,7 +20,7 @@ $ cd ansible-dsnode
 $ cp hosts.template hosts
 ```
 
-Edit the hosts template ensuring that the hosts you configure are listed, for instance on a local network of nodes:
+Edit the hosts template ensuring that the hosts you configure are listed:
 
 ```
 [nodes]

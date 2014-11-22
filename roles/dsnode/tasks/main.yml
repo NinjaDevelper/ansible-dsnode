@@ -17,7 +17,7 @@
   
 - name: Create downstream-node mysql user
   mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv=downstream.*:ALL
-  with_items: groups['nodes']
+  with_items: privatenodes
   when: inventory_hostname in groups['dbserver']
 
 - name: Clone downstream-node repo

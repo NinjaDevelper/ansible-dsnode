@@ -19,7 +19,7 @@ MMDB_PATH = '{{ dsnodegeodbpath }}'
 HEARTBEAT = heartbeat.Swizzle.Swizzle
 
 MONGO_LOGGING = True
-MONGO_URI = 'mongodb://{{dsnodemongouser}}:{{mongodbpassword}}@{{mongodbserver}}/{{dsnodemongodbname}}'
+MONGO_URI = 'mongodb://{{dsnodemongodbuser}}:{{mongodbpassword}}@{{mongodbserver}}/{{dsnodemongodbname}}'
 
 MAX_CHUNK_SIZE = 32000
 DEFAULT_CHUNK_SIZE = 100

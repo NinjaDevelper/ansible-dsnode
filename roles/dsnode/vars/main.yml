@@ -15,7 +15,7 @@ dsnodeuwsgiini: "{{dsnodeuserroot}}/node_uwsgi.ini"
 dsnodeuwsgisock: "{{dsnodeuserroot}}/node_uwsgi.sock"
 dsnodemysqluser: downstream
 dsnodemysqldbname: downstream
-dsnodemongouser: downstream
+dsnodemongodbuser: downstream
 dsnodemongodbname: dsnode_log
 dsnodehostname: "{{inventory_hostname}}"
 dsnodeport: "{{ 14443 if ssl_enabled else 8000 }}"

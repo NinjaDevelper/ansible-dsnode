@@ -4,5 +4,5 @@
   with_items:
     - mongodb
 
-- name: Ensure mongod is running
+- name: Ensure mongodb is running
   service: name=mongodb state=running

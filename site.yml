@@ -7,21 +7,13 @@
   roles:
     - nginxlb
 
-- name: Install mysql
+- name: Install mysql and mongodb server
   hosts: dbserver
   remote_user: root
   sudo: true
   
   roles:
     - dsnodedb
-    
-- name: Install mongodb
-  hosts: dbserver
-  remote_user: root
-  sudo: true
-  
-  roles:
-    - mongodb
 
 - name: Install downstream-node
   hosts: nodes

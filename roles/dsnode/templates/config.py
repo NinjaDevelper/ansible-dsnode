@@ -8,6 +8,7 @@ import heartbeat
 DEBUG = False
 SECRET_KEY = os.urandom(32)
 APPLICATION_ROOT = '/api/downstream/v1'
+SERVER_NAME = '{{ dsnodehostname }}'
 
 # SQLAlchemy (DB)
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{{ dsnodemysqluser }}:{{ mysqlpassword }}@{{ mysqldbserver }}/{{dsnodemysqldbname}}'  # NOQA

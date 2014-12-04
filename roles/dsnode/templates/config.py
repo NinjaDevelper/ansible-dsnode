@@ -10,7 +10,7 @@ SECRET_KEY = os.urandom(32)
 APPLICATION_ROOT = '/api/downstream/v1'
 
 # SQLAlchemy (DB)
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{{ dsnodemysqluser }}:{{ mysqlpassword }}@{{ mysqldbserver }}/downstream'  # NOQA
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{{ dsnodemysqluser }}:{{ mysqlpassword }}@{{ mysqldbserver }}/{{dsnodemysqldbname}}'  # NOQA
 
 FILES_PATH = '/tmp/'
 TAGS_PATH = '/tmp/'
@@ -19,8 +19,7 @@ MMDB_PATH = '{{ dsnodegeodbpath }}'
 HEARTBEAT = heartbeat.Swizzle.Swizzle
 
 MONGO_LOGGING = True
-MONGO_HOST = '{{ mongodbserver }}'
-MONGO_PORT = 27017
+MONGO_URI = 'mongodb://{{dsnodemongouser}}:{{mongodbpassword}}@{{mongodbserver}}/{{dsnodemongodbname}}'
 
 MAX_CHUNK_SIZE = 32000
 DEFAULT_CHUNK_SIZE = 100

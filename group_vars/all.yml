@@ -4,6 +4,8 @@ mysqldbserver: "{{ groups['dbserver'][0] }}"
 mongodbserver: "{{ groups['dbserver'][0] }}"
 # password for the mysql server
 mysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
+# password for the mongodb user
+mongodbpassword: "{{ lookup('password','credentials/mongodbpassword') }}"
 # root server name
 servername: live.driveshare.org
 # private nodes addresses.  if you have private networking, the nodes private 

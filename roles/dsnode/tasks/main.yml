@@ -16,8 +16,12 @@
   user: name={{ dsnodeuser }}
   
 - name: Create downstream-node mysql user
-  mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv=downstream.*:ALL
+  mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv={{dsnodemongodbname}}.*:ALL
   with_items: privatenodes
+  when: inventory_hostname in groups['dbserver']
+  
+- name: Create downstream-node mongodb user
+  command: mongo {{dsnodemongodbname}} --eval 'db.addUser({ user: "{{dsnodemongouser}}", pwd: "{{ mongodbpassword }}", roles: ["readWrite"] })'
   when: inventory_hostname in groups['dbserver']
 
 - name: Clone downstream-node repo

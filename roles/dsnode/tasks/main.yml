@@ -9,8 +9,11 @@
     - python-dev
     - python-mysqldb
 
-- name: Install virtualenv
-  pip: name=virtualenv
+- name: Install virtualenv, pymongo
+  pip: name={{item}}
+  with_items:
+    - virtualenv
+    - pymongo
   
 - name: Set up the downstream-node user
   user: name={{ dsnodeuser }}

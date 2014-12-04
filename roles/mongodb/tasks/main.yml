@@ -5,4 +5,4 @@
     - mongodb
 
 - name: Ensure mongod is running
-  service: name=mongod state=running
+  service: name=mongodb state=running

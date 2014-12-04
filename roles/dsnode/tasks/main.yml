@@ -21,7 +21,7 @@
   when: inventory_hostname in groups['dbserver']
   
 - name: Create downstream-node mongodb user
-  command: mongo {{dsnodemongodbname}} --eval 'db.addUser({ user: "{{dsnodemongouser}}", pwd: "{{ mongodbpassword }}", roles: ["readWrite"] })'
+  command: "mongo {{dsnodemongodbname}} --eval 'db.addUser({ user: \"{{dsnodemongouser}}\", pwd: \"{{ mongodbpassword }}\", roles: [\"readWrite\"] })'"
   when: inventory_hostname in groups['dbserver']
 
 - name: Clone downstream-node repo

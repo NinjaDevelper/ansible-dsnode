@@ -1,6 +1,7 @@
 ---
 # select the first dbserver as our server.  we'll only have one for now anyway
 mysqldbserver: "{{ groups['dbserver'][0] }}"
+mongodbserver: "{{ groups['dbserver'][0] }}"
 # password for the mysql server
 mysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
 # root server name

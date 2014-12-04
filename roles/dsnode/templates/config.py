@@ -18,6 +18,10 @@ MMDB_PATH = '{{ dsnodegeodbpath }}'
 
 HEARTBEAT = heartbeat.Swizzle.Swizzle
 
+MONGO_LOGGING = True
+MONGO_HOST = '{{ mongodbserver }}'
+MONGO_PORT = 27017
+
 MAX_CHUNK_SIZE = 32000
 DEFAULT_CHUNK_SIZE = 100
 MAX_TOKENS_PER_IP = 5

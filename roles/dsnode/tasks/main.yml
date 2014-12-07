@@ -10,14 +10,20 @@
     - python-mysqldb
 
 - name: Install virtualenv
-  pip: name=virtualenv
+  pip: name={{item}}
+  with_items:
+    - virtualenv
   
 - name: Set up the downstream-node user
   user: name={{ dsnodeuser }}
   
 - name: Create downstream-node mysql user
-  mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv=downstream.*:ALL
+  mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv={{dsnodemysqldbname}}.*:ALL
   with_items: privatenodes
+  when: inventory_hostname in groups['dbserver']
+  
+- name: Create downstream-node mongodb user
+  mongodb_user: database={{dsnodemongodbname}} user={{dsnodemongodbuser}} password="{{ mongodbpassword }}"  state=present
   when: inventory_hostname in groups['dbserver']
 
 - name: Clone downstream-node repo

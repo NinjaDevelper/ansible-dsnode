@@ -1,0 +1,8 @@
+---
+- name: Install mongodb
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - mongodb
+
+- name: Ensure mongodb is running
+  service: name=mongodb state=running

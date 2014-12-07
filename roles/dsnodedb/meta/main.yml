@@ -2,4 +2,5 @@
 dependencies:
  - { role: common }
  - { role: mysql }
+ - { role: mongodb }
  

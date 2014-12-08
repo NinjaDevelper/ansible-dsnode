@@ -22,7 +22,7 @@
   copy: src={{dhparam_src}} dest={{dhparam_dest}}
   when: ssl_enabled|bool
   notify: Restart nginx
-
+  
 - name: Copy ssl configuration
   template: src=ssl.conf dest=/etc/nginx/sites-available/ssl.conf
   when: ssl_enabled|bool

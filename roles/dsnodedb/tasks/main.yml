@@ -12,4 +12,4 @@
   notify: Restart mongodb
 
 - name: Copy cron job for cleaning db daily
-  copy: path=/etc/cron.daily/downstream src=downstream.sh owner=root mode=0755
+  copy: dest=/etc/cron.daily/downstream src=downstream.sh owner=root mode=0755

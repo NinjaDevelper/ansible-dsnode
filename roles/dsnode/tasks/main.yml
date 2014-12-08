@@ -21,6 +21,9 @@
   mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv={{dsnodemysqldbname}}.*:ALL
   with_items: privatenodes
   when: inventory_hostname in groups['dbserver']
+
+- name: Install pymongo
+  pip: name=pymongo virtualenv={{dsnodeenv}}
   
 - name: Create downstream-node mongodb user
   mongodb_user: database={{dsnodemongodbname}} user={{dsnodemongodbuser}} password="{{ mongodbpassword }}"  state=present

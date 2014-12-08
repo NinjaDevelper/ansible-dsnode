@@ -1,4 +1,4 @@
---- 
+---
 - name: Setup the database
   mysql_db: name=downstream
   
@@ -10,3 +10,6 @@
 - name: Configure mongodb to listen to outside servers
   lineinfile: dest=/etc/mongodb.conf regexp="bind_ip" line="bind_ip = 0.0.0.0"
   notify: Restart mongodb
+
+- name: Copy cron job for cleaning db daily
+  copy: path=/etc/cron.daily/downstream src=downstream.sh owner=root mode=0755

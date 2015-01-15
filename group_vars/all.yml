@@ -3,15 +3,16 @@
 mysqldbserver: "{{ groups['dbserver'][0] }}"
 mongodbserver: "{{ groups['dbserver'][0] }}"
 # password for the mysql server
-mysqlpassword: "{{ lookup('password','credentials/mysqlpassword') }}"
+mysqlpassword: "{{ lookup('password','credentials/mysqlpassword chars=ascii_letters,digits') }}"
 # password for the mongodb user
-mongodbpassword: "{{ lookup('password','credentials/mongodbpassword') }}"
+mongodbpassword: "{{ lookup('password','credentials/mongodbpassword chars=ascii_letters,digits') }}"
 # root server name
 servername: live.driveshare.org
 # private nodes addresses.  if you have private networking, the nodes private 
 # addresses should be put as a list here.  by default, these are the same as the
 # public ip addresses
-privatenodes: "{{ groups['nodes'] }}"
+# privatenodes: "{{ groups['nodes'] }}"
+privatenodes: "{{ hostvars|map(attribute='ansible_eth1')|map(attribute='address')|list }}"
 # pull the ip address for the loadbalancer
 lbaddr: "{{ hostvars[groups['loadbalancer'][0]]['ansible_default_ipv4']['address'] }}"
 # whether to globally enable ssl (this will enable ssl on the dashboard and the nodes.)

@@ -13,11 +13,12 @@ SERVER_ALIAS = '{{ dsnodehostname }}'
 # SQLAlchemy (DB)
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{{ dsnodemysqluser }}:{{ mysqlpassword }}@{{ mysqldbserver }}/{{dsnodemysqldbname}}'  # NOQA
 
-FILES_PATH = '/tmp/'
-TAGS_PATH = '/tmp/'
+FILES_PATH = '{{ dsnodetmppath }}'
+TAGS_PATH = '{{ dsnodetagspath }}'
 MMDB_PATH = '{{ dsnodegeodbpath }}'
 
-HEARTBEAT = heartbeat.Swizzle.Swizzle
+HEARTBEAT = heartbeat.Merkle.Merkle
+HEARTBEAT_PATH = '{{ dsnodeheartbeatpath }}'
 
 MONGO_LOGGING = True
 MONGO_URI = 'mongodb://{{dsnodemongodbuser}}:{{mongodbpassword}}@{{mongodbserver}}/{{dsnodemongodbname}}'

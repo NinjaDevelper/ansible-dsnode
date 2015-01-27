@@ -5,6 +5,9 @@ dsnodeprojroot: "{{dsnodeuserroot}}/downstream-node"
 dsnodelibroot: "{{dsnodeprojroot}}/downstream_node"
 dsnodedataroot: "{{dsnodeprojroot}}/data"
 dsnodegeodbpath: "{{dsnodedataroot}}/GeoLite2-City.mmdb"
+dsnodeheartbeatpath: "{{dsnodedataroot}}/heartbeat"
+dsnodetagspath: "{{dsnodeprojroot}}/tags"
+dsnodetmppath: "{{dsnodeprojroot}}/tmp"
 dsnoderepourl: https://github.com/storj/downstream-node.git
 dsnodemaxminddburl: http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz
 dsnodewhitelistrepourl: https://github.com/storj/whitelist.git

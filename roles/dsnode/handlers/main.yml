@@ -3,4 +3,4 @@
    service: name=uwsgi state=restarted
 
  - name: Restart node maintain
-   service: name="node-maintain" state=restarted
+   service: name=node-maintain state=restarted

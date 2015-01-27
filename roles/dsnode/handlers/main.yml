@@ -2,5 +2,5 @@
  - name: Restart uwsgi
    service: name=uwsgi state=restarted
 
- - name: Restart node-maintain
+ - name: Restart node maintain
    service: name="node-maintain" state=restarted

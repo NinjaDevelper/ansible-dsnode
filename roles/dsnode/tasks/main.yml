@@ -77,6 +77,10 @@
   template: src=uwsgi.conf dest=/etc/init/uwsgi.conf
   notify: Restart uwsgi
   
+- name: Copy node-maintain startup
+  template: src=node-maintain.conf dest=/etc/init/node-maintain.conf
+  notify: Restart node-maintain
+  
 - name: Ensure uwsgi log directory exists
   file: path=/var/log/uwsgi recurse=yes owner={{dsnodeuser}} group={{dsnodeuser}} state=directory
   notify: Restart uwsgi

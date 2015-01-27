@@ -1,5 +1,12 @@
 ---
 - name: Restart SSHD
   service: name=ssh state=restarted
+  
 - name: Restart iptables
   service: name=ufw state=restarted
+  
+- name: Load iptables rule set
+  shell: /sbin/iptables-restore < /etc/iptables/rules.v4
+  
+- name: Restart Fail2Ban
+  service: name=fail2ban state=restarted

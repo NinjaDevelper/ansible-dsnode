@@ -1,8 +1,4 @@
 ---
-- name: Update and secure SSHD configuration
-  copy: src=sshd_config dest=/etc/ssh/sshd_config backup=yes owner=0 group=0 mode=0644 validate='/usr/sbin/sshd -T -f %s'
-  notify: Restart SSHD
-
 - name: Update all package caches
   apt: update_cache=yes
 
@@ -10,29 +6,29 @@
   apt: upgrade=yes
 
 - name: Install pre-requisite packages and services
-  action: apt pkg={{item}} state=installed
+  apt: name={{item}}
   with_items:
    - iptables-persistent
    - fail2ban
 
+- name: Update and secure SSHD configuration
+  copy: src=sshd_config dest=/etc/ssh/sshd_config backup=yes owner=0 group=0 mode=0644 validate='/usr/sbin/sshd -T -f %s'
+  notify: Restart SSHD
+
 - name: Copy iptables as persistent rule set
-  copy: src=iptables-save dest=/etc/iptables/rules.v4
+  copy: src=iptables-save dest=/etc/iptables/rules.v4 force=no
+  notify: Load iptables rule set
 
-- name: Remove any trailing newline that Ansible added so iptables-restore does not break
-  shell: chdir=/etc/iptables awk 'NF' rules.v4 > tt && mv tt rules.v4
-
-- name: Load iptables rule set
-  shell: /sbin/iptables-restore < /etc/iptables/rules.v4
+#- name: Remove any trailing newline that Ansible added so iptables-restore does not break
+#  shell: chdir=/etc/iptables awk 'NF' rules.v4 > tt && mv tt rules.v4
 
 - name: Configure Fail2Ban for additional security
   template: src=jail.local.j2 dest=/etc/fail2ban/jail.local
+  notify: Restart Fail2Ban
 
-- name: Restart Fail2Ban before saving iptables changes
-  service: name=fail2ban state=restarted
-
-- name: Save any changes Fail2Ban made to iptables
-  shell: /sbin/iptables-save > /etc/iptables/rules.v4
-  notify: Restart iptables
+#- name: Save any changes Fail2Ban made to iptables
+#  shell: /sbin/iptables-save > /etc/iptables/rules.v4
+#  notify: Restart iptables
 
 - name: Ensure Fail2Ban starts on a fresh reboot
   service: name=fail2ban state=started enabled=yes

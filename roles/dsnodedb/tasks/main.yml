@@ -11,5 +11,5 @@
   lineinfile: dest=/etc/mongodb.conf regexp="bind_ip" line="bind_ip = 0.0.0.0"
   notify: Restart mongodb
 
-- name: Copy cron job for cleaning db daily
-  copy: dest=/etc/cron.daily/clean src=downstream.sh owner=root mode=0755
+- name: Copy cron job for cleaning db hourly
+  copy: dest=/etc/cron.hourly/clean src=downstream.sh owner=root mode=0755

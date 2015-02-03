@@ -22,6 +22,7 @@ HEARTBEAT_PATH = '{{ dsnodeheartbeatpath }}'
 
 MONGO_LOGGING = True
 MONGO_URI = 'mongodb://{{dsnodemongodbuser}}:{{mongodbpassword}}@{{mongodbserver}}/{{dsnodemongodbname}}'
+PROFILE = False
 
 MAX_CHUNK_SIZE = 32000
 DEFAULT_CHUNK_SIZE = 100

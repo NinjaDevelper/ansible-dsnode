@@ -20,7 +20,7 @@ MMDB_PATH = '{{ dsnodegeodbpath }}'
 HEARTBEAT = heartbeat.Merkle.Merkle
 HEARTBEAT_PATH = '{{ dsnodeheartbeatpath }}'
 
-MONGO_LOGGING = True
+MONGO_LOGGING = False
 MONGO_URI = 'mongodb://{{dsnodemongodbuser}}:{{mongodbpassword}}@{{mongodbserver}}/{{dsnodemongodbname}}'
 PROFILE = False
 

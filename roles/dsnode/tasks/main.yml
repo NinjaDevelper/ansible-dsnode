@@ -51,7 +51,7 @@
   notify: Restart uwsgi
 
 - name: Install downstream-node
-  command: "{{dsnodeenv}}/bin/python setup.py install"
+  command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/setup.py install"
   
 - name: Initialize database
   command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --initdb"

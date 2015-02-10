@@ -24,8 +24,7 @@ MONGO_LOGGING = False
 MONGO_URI = 'mongodb://{{dsnodemongodbuser}}:{{mongodbpassword}}@{{mongodbserver}}/{{dsnodemongodbname}}'
 PROFILE = False
 
-MAX_CHUNK_SIZE = 32000
-DEFAULT_CHUNK_SIZE = 100
+DEFAULT_CHUNK_SIZE = 33554432
 MAX_TOKENS_PER_IP = 5
 MIN_SJCX_BALANCE = 10000
 MAX_SIG_MESSAGE_SIZE = 1024

@@ -32,3 +32,7 @@ REQUIRE_SIGNATURE = False
 DEFAULT_INTERVAL = 300
 MAX_CHUNKS_PER_REQUEST = 100
 
+# changing this requires deleting the data/heartbeat file
+# and rebuilding the chunk database
+HEARTBEAT_CHECK_FRACTION = 0.01
+

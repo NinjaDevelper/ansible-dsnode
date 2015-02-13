@@ -4,3 +4,9 @@
 
  - name: Restart node maintain
    service: name=node-maintain state=restarted
+   
+ - name: Regenerate chunks
+   command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --clearchunks"
+   
+ - name: Regenerate heartbeat
+   file: path={{dsnodedataroot}}/heartbeat state=absent

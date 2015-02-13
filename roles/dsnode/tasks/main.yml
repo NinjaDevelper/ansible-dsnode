@@ -48,7 +48,10 @@
   
 - name: Copy downstream-node config
   template: src=config.py dest={{dsnodelibroot}}/config.py
-  notify: Restart uwsgi
+  notify:
+    - Restart uwsgi
+    - Regenerate chunks
+    - Regenerate heartbeat
 
 - name: Install downstream-node
   command: "{{dsnodeenv}}/bin/python setup.py install"

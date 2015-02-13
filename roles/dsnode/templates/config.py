@@ -20,9 +20,9 @@ MMDB_PATH = '{{ dsnodegeodbpath }}'
 HEARTBEAT = heartbeat.Merkle.Merkle
 HEARTBEAT_PATH = '{{ dsnodeheartbeatpath }}'
 
-MONGO_LOGGING = False
+MONGO_LOGGING = True
 MONGO_URI = 'mongodb://{{dsnodemongodbuser}}:{{mongodbpassword}}@{{mongodbserver}}/{{dsnodemongodbname}}'
-PROFILE = False
+PROFILE = True
 
 DEFAULT_CHUNK_SIZE = 33554432
 MAX_TOKENS_PER_IP = 5
@@ -34,5 +34,5 @@ MAX_CHUNKS_PER_REQUEST = 100
 
 # changing this requires deleting the data/heartbeat file
 # and rebuilding the chunk database
-HEARTBEAT_CHECK_FRACTION = 0.01
+HEARTBEAT_CHECK_FRACTION = 0.001
 

@@ -11,7 +11,7 @@ APPLICATION_ROOT = '/api/downstream/v1'
 SERVER_ALIAS = '{{ dsnodehostname }}'
 
 # SQLAlchemy (DB)
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{{ dsnodemysqluser }}:{{ mysqlpassword }}@{{ mysqldbserver }}/{{dsnodemysqldbname}}'  # NOQA
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{{ dsnodemysqluser }}:{{ mysqlpassword }}@{{ mysqldbserver }}/{{dsnodemysqldbname}}?charset=utf8'  # NOQA
 
 FILES_PATH = '{{ dsnodetmppath }}'
 TAGS_PATH = '{{ dsnodetagspath }}'

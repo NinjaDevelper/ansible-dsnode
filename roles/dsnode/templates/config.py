@@ -30,7 +30,8 @@ MIN_SJCX_BALANCE = 10000
 MAX_SIG_MESSAGE_SIZE = 1024
 REQUIRE_SIGNATURE = False
 DEFAULT_INTERVAL = 300
-MAX_CHUNKS_PER_REQUEST = 100
+MAX_CHUNKS_PER_REQUEST = 10
+MAX_SIZE_PER_ADDRESS = 1073741824
 
 # changing this requires deleting the data/heartbeat file
 # and rebuilding the chunk database

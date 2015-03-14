@@ -19,7 +19,7 @@
   user: name={{ dsnodeuser }}
 
 - name: Ensure mysql is running
-  service: name=mysql
+  service: name=mysql state=running
   
 - name: Create downstream-node mysql user
   mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv={{dsnodemysqldbname}}.*:ALL

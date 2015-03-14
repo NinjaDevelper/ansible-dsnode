@@ -17,11 +17,17 @@
   
 - name: Set up the downstream-node user
   user: name={{ dsnodeuser }}
+
+- name: Ensure mysql is running
+  service: name=mysql
   
 - name: Create downstream-node mysql user
   mysql_user: name={{ dsnodemysqluser }} host={{ item }} password="{{ mysqlpassword }}" priv={{dsnodemysqldbname}}.*:ALL
   with_items: privatenodes
   when: inventory_hostname in groups['dbserver']
+
+- name: Ensure mongodb is running
+  service: name=mongodb state=running
   
 - name: Create downstream-node mongodb user
   mongodb_user: database={{dsnodemongodbname}} user={{dsnodemongodbuser}} password="{{ mongodbpassword }}"  state=present
@@ -84,6 +90,7 @@
   
 - name: Copy node-maintain startup
   template: src=node-maintain.conf dest=/etc/init/node-maintain.conf
+  when: inventory_hostname in groups['dbserver']
   notify: Restart node maintain
   
 - name: Ensure uwsgi log directory exists

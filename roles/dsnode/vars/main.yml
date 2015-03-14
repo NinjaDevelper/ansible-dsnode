@@ -7,6 +7,7 @@ dsnodedataroot: "{{dsnodeprojroot}}/data"
 dsnodegeodbpath: "{{dsnodedataroot}}/GeoLite2-City.mmdb"
 dsnodeheartbeatpath: "{{dsnodedataroot}}/heartbeat"
 dsnodetagspath: "{{dsnodeprojroot}}/tags"
+dsnoderemotetagspath: "http://{{ mysqldbserver }}:dsnodeport/tag"
 dsnodetmppath: "{{dsnodeprojroot}}/tmp"
 dsnoderepourl: https://github.com/storj/downstream-node.git
 dsnodemaxminddburl: http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz

@@ -15,6 +15,7 @@ SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{{ dsnodemysqluser }}:{{ mysqlpasswor
 
 FILES_PATH = '{{ dsnodetmppath }}'
 TAGS_PATH = '{{ dsnodetagspath }}'
+REMOTE_TAGS_PATH = '{{ dsnoderemotetagspath }}'
 MMDB_PATH = '{{ dsnodegeodbpath }}'
 
 HEARTBEAT = heartbeat.Merkle.Merkle

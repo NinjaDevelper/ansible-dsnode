@@ -7,6 +7,8 @@
    
  - name: Regenerate chunks
    command: "{{dsnodeenv}}/bin/python {{dsnodeprojroot}}/runapp.py --clearchunks"
+   when: inventory_hostname in groups['dbserver']
    
  - name: Regenerate heartbeat
    file: path={{dsnodedataroot}}/heartbeat state=absent
+   when: inventory_hostname in groups['dbserver']

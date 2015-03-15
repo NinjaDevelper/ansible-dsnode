@@ -1,4 +1,5 @@
 ---
+remoteprefix: "{{ 'https' if ssl_enabled else 'http' }}"
 dsnodeuser: dsnode
 dsnodeuserroot: /home/{{dsnodeuser}}
 dsnodeprojroot: "{{dsnodeuserroot}}/downstream-node"
@@ -7,8 +8,8 @@ dsnodedataroot: "{{dsnodeprojroot}}/data"
 dsnodegeodbpath: "{{dsnodedataroot}}/GeoLite2-City.mmdb"
 dsnodeheartbeatpath: "{{dsnodedataroot}}/heartbeat"
 dsnodetagspath: "{{dsnodeprojroot}}/tags"
-dsnoderemotetagspath: "http://{{ mysqldbserver }}:{{dsnodeport}}/api/downstream/v1/tag/{{dsnodetagskey}}"
-dsnoderemoteheartbeatpath: "http://{{ mysqldbserver }}:{{dsnodeport}}/api/downstream/v1/private_heartbeat/{{dsnodetagskey}}"
+dsnoderemotetagspath: "{{remoteprefix}}://{{ mysqldbserver }}:{{dsnodeport}}/api/downstream/v1/tag/{{dsnodetagskey}}"
+dsnoderemoteheartbeatpath: "{{remoteprefix}}://{{ mysqldbserver }}:{{dsnodeport}}/api/downstream/v1/private_heartbeat/{{dsnodetagskey}}"
 dsnodetmppath: "{{dsnodeprojroot}}/tmp"
 dsnodetagskey: "{{ lookup('password','credentials/tagskey chars=ascii_letters,digits') }}"
 dsnoderepourl: https://github.com/storj/downstream-node.git
